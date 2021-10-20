@@ -139,6 +139,7 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
   @override
   void initState() {
     super.initState();
+    _setDigits(widget.duration);
     _notifiyDuration = NotifiyDuration(widget.duration);
     _streamDurationListener();
     _durationTitle = widget.durationTitle ?? DurationTitle.en();
@@ -180,18 +181,22 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
 
     _streamDuration.durationLeft.listen((event) {
       _notifiyDuration.streamDuration(event);
-      _daysFirstDigit(event);
-      _daysSecondDigit(event);
-
-      _hoursFirstDigit(event);
-      _hoursSecondDigit(event);
-
-      _minutesFirstDigit(event);
-      _minutesSecondDigit(event);
-
-      _secondsFirstDigit(event);
-      _secondsSecondDigit(event);
+      _setDigits(event);
     });
+  }
+
+  void _setDigits(Duration duration) {
+      _daysFirstDigit(duration);
+      _daysSecondDigit(duration);
+
+      _hoursFirstDigit(duration);
+      _hoursSecondDigit(duration);
+
+      _minutesFirstDigit(duration);
+      _minutesSecondDigit(duration);
+
+      _secondsFirstDigit(duration);
+      _secondsSecondDigit(duration);
   }
 
   void _daysFirstDigit(Duration duration) {
