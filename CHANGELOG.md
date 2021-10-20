@@ -1,47 +1,60 @@
+## 0.0.7
+
+- fixes
+
 ## 0.0.6
-* release: countUp, countup infinity
-* change: default padding slidecountdown
-* docs: update readme.md
+
+- release: countUp, countup infinity
+- change: default padding slidecountdown
+- docs: update readme.md
 
 ## 0.0.6-dev.2
-* Refactor codebase
+
+- Refactor codebase
 
 ## 0.0.6-dev.1
-* Add: countup, countup infinity
+
+- Add: countup, countup infinity
 
 ## 0.0.5
-* release: SlidecountdownSeparated
+
+- release: SlidecountdownSeparated
 
 ## 0.0.5-dev.1
-* Add: SlidecountdownSeparated
-* Fix: example
+
+- Add: SlidecountdownSeparated
+- Fix: example
 
 ## 0.0.4
-* Fix separator padding
-* Add documentation
-* Change package description
-* New Example
+
+- Fix separator padding
+- Add documentation
+- Change package description
+- New Example
 
 ## 0.0.4-dev.2
-* Fix example 
-* Change package description
+
+- Fix example
+- Change package description
 
 ## 0.0.4-dev.1
-* Refactor document
-* Fix separator padding
+
+- Refactor document
+- Fix separator padding
 
 ## 0.0.3
-* Fix animation issue
+
+- Fix animation issue
 
 ## 0.0.2
 
-* Improve fade transition
+- Improve fade transition
 
 ## 0.0.1
 
-* Add fade transition
+- Add fade transition
 
 ## 0.0.1-dev.1
 
-* First publish
-* Internal testing
+- First publish
+- Internal testing
