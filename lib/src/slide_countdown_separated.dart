@@ -292,56 +292,27 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
 
   Widget countdown(Duration duration) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Visibility(
-          visible: widget.icon != null,
-          child: widget.icon ?? const SizedBox.shrink(),
+        if (widget.icon != null) widget.icon! else const SizedBox.shrink(),
+        daysWidget(duration),
+        separator(
+          title: _durationTitle.days,
+          visible: !(duration.inDays < 1 && !widget.showZeroValue && !widget.withDays),
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            daysWidget(duration),
-            separator(
-              title: _durationTitle.days,
-              visible: !(duration.inDays < 1 &&
-                  !widget.showZeroValue &&
-                  !widget.withDays),
-            ),
-          ],
+        hoursWidget(duration),
+        separator(
+          title: _durationTitle.hours,
+          visible: !(duration.inHours < 1 && !widget.showZeroValue),
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            hoursWidget(duration),
-            separator(
-              title: _durationTitle.hours,
-              visible: !(duration.inHours < 1 && !widget.showZeroValue),
-            ),
-          ],
+        minutesWidget(duration),
+        separator(
+          title: _durationTitle.minutes,
+          visible: !(duration.inMinutes < 1 && !widget.showZeroValue),
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            minutesWidget(duration),
-            separator(
-              title: _durationTitle.minutes,
-              visible: !(duration.inMinutes < 1 && !widget.showZeroValue),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            secondsWidget(duration),
-            separatorSeconds(),
-          ],
-        ),
-        Visibility(
-          visible: widget.sufixIcon != null,
-          child: widget.sufixIcon ?? const SizedBox.shrink(),
-        ),
+        secondsWidget(duration),
+        separatorSeconds(),
+        if (widget.sufixIcon != null) widget.sufixIcon! else const SizedBox.shrink()
       ],
     );
   }
@@ -388,24 +359,26 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
       } else {
         return boxDecoration(
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextAnimation(
-                value: _daysFirstDigitNotifier,
-                textStyle: widget.textStyle,
-                slideDirection: widget.slideDirection,
-                curve: widget.curve,
-                countUp: widget.countUp,
+              Expanded(
+                child: TextAnimation(
+                  value: _daysFirstDigitNotifier,
+                  textStyle: widget.textStyle,
+                  slideDirection: widget.slideDirection,
+                  curve: widget.curve,
+                  countUp: widget.countUp,
+                ),
               ),
-              TextAnimation(
-                value: _daysSecondDigitNotifier,
-                textStyle: widget.textStyle,
-                slideDirection: widget.slideDirection,
-                curve: widget.curve,
-                countUp: widget.countUp,
-                showZeroValue: !(duration.inHours < 1 &&
-                    widget.separatorType == SeparatorType.title),
+              Expanded(
+                child: TextAnimation(
+                  value: _daysSecondDigitNotifier,
+                  textStyle: widget.textStyle,
+                  slideDirection: widget.slideDirection,
+                  curve: widget.curve,
+                  countUp: widget.countUp,
+                  showZeroValue: !(duration.inHours < 1 &&
+                      widget.separatorType == SeparatorType.title),
+                ),
               ),
             ],
           ),
@@ -421,24 +394,26 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
       } else {
         return boxDecoration(
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextAnimation(
-                value: _hoursFirstDigitNotifier,
-                textStyle: widget.textStyle,
-                slideDirection: widget.slideDirection,
-                curve: widget.curve,
-                countUp: widget.countUp,
+              Expanded(
+                child: TextAnimation(
+                  value: _hoursFirstDigitNotifier,
+                  textStyle: widget.textStyle,
+                  slideDirection: widget.slideDirection,
+                  curve: widget.curve,
+                  countUp: widget.countUp,
+                ),
               ),
-              TextAnimation(
-                value: _hoursSecondDigitNotifier,
-                textStyle: widget.textStyle,
-                slideDirection: widget.slideDirection,
-                curve: widget.curve,
-                countUp: widget.countUp,
-                showZeroValue: !(duration.inHours < 1 &&
-                    widget.separatorType == SeparatorType.title),
+              Expanded(
+                child: TextAnimation(
+                  value: _hoursSecondDigitNotifier,
+                  textStyle: widget.textStyle,
+                  slideDirection: widget.slideDirection,
+                  curve: widget.curve,
+                  countUp: widget.countUp,
+                  showZeroValue: !(duration.inHours < 1 &&
+                      widget.separatorType == SeparatorType.title),
+                ),
               ),
             ],
           ),
@@ -455,26 +430,28 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
       } else {
         return boxDecoration(
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextAnimation(
-                value: _minutesFirstDigitNotifier,
-                textStyle: widget.textStyle,
-                slideDirection: widget.slideDirection,
-                curve: widget.curve,
-                countUp: widget.countUp,
-                showZeroValue: !(duration.inMinutes < 1 &&
-                    widget.separatorType == SeparatorType.title),
+              Expanded(
+                child: TextAnimation(
+                  value: _minutesFirstDigitNotifier,
+                  textStyle: widget.textStyle,
+                  slideDirection: widget.slideDirection,
+                  curve: widget.curve,
+                  countUp: widget.countUp,
+                  showZeroValue: !(duration.inMinutes < 1 &&
+                      widget.separatorType == SeparatorType.title),
+                ),
               ),
-              TextAnimation(
-                value: _minutesSecondDigitNotifier,
-                textStyle: widget.textStyle,
-                slideDirection: widget.slideDirection,
-                curve: widget.curve,
-                countUp: widget.countUp,
-                showZeroValue: !(duration.inMinutes < 1 &&
-                    widget.separatorType == SeparatorType.title),
+              Expanded(
+                child: TextAnimation(
+                  value: _minutesSecondDigitNotifier,
+                  textStyle: widget.textStyle,
+                  slideDirection: widget.slideDirection,
+                  curve: widget.curve,
+                  countUp: widget.countUp,
+                  showZeroValue: !(duration.inMinutes < 1 &&
+                      widget.separatorType == SeparatorType.title),
+                ),
               ),
             ],
           ),
@@ -486,22 +463,24 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
   Widget secondsWidget(Duration duration) {
     return boxDecoration(
       child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextAnimation(
-            value: _secondsFirstDigitNotifier,
-            textStyle: widget.textStyle,
-            slideDirection: widget.slideDirection,
-            curve: widget.curve,
-            countUp: widget.countUp,
+          Expanded(
+            child: TextAnimation(
+              value: _secondsFirstDigitNotifier,
+              textStyle: widget.textStyle,
+              slideDirection: widget.slideDirection,
+              curve: widget.curve,
+              countUp: widget.countUp,
+            ),
           ),
-          TextAnimation(
-            value: _secondsSecondDigitNotifier,
-            textStyle: widget.textStyle,
-            slideDirection: widget.slideDirection,
-            curve: widget.curve,
-            countUp: widget.countUp,
+          Expanded(
+            child: TextAnimation(
+              value: _secondsSecondDigitNotifier,
+              textStyle: widget.textStyle,
+              slideDirection: widget.slideDirection,
+              curve: widget.curve,
+              countUp: widget.countUp,
+            ),
           ),
         ],
       ),
