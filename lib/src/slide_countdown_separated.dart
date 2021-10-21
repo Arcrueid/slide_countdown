@@ -135,6 +135,7 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
   late NotifiyDuration _notifiyDuration;
   late Color _textColor;
   late Color _fadeColor;
+  bool _disposed = false;
 
   @override
   void initState() {
@@ -180,6 +181,7 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
     );
 
     _streamDuration.durationLeft.listen((event) {
+      if (_disposed) return;
       _notifiyDuration.streamDuration(event);
       _setDigits(event);
     });
@@ -277,6 +279,7 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
 
   @override
   void dispose() {
+    _disposed = true;
     _disposeHoursNotifier();
     _disposeMinutesNotifier();
     _disposeSecondsNotifier();
