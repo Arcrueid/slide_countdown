@@ -182,23 +182,24 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
 
     _streamDuration.durationLeft.listen((event) {
       if (_disposed) return;
+      if (event.inSeconds <= 0 && !widget.infinityCountUp) return;
       _notifiyDuration.streamDuration(event);
       _setDigits(event);
     });
   }
 
   void _setDigits(Duration duration) {
-      _daysFirstDigit(duration);
-      _daysSecondDigit(duration);
+    _daysFirstDigit(duration);
+    _daysSecondDigit(duration);
 
-      _hoursFirstDigit(duration);
-      _hoursSecondDigit(duration);
+    _hoursFirstDigit(duration);
+    _hoursSecondDigit(duration);
 
-      _minutesFirstDigit(duration);
-      _minutesSecondDigit(duration);
+    _minutesFirstDigit(duration);
+    _minutesSecondDigit(duration);
 
-      _secondsFirstDigit(duration);
-      _secondsSecondDigit(duration);
+    _secondsFirstDigit(duration);
+    _secondsSecondDigit(duration);
   }
 
   void _daysFirstDigit(Duration duration) {
@@ -306,7 +307,9 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
         daysWidget(duration),
         separator(
           title: _durationTitle.days,
-          visible: !(duration.inDays < 1 && !widget.showZeroValue && !widget.withDays),
+          visible: !(duration.inDays < 1 &&
+              !widget.showZeroValue &&
+              !widget.withDays),
         ),
         hoursWidget(duration),
         separator(
@@ -320,7 +323,10 @@ class _SlideCountdownSeparatedState extends State<SlideCountdownSeparated> {
         ),
         secondsWidget(duration),
         separatorSeconds(),
-        if (widget.sufixIcon != null) widget.sufixIcon! else const SizedBox.shrink()
+        if (widget.sufixIcon != null)
+          widget.sufixIcon!
+        else
+          const SizedBox.shrink()
       ],
     );
   }
